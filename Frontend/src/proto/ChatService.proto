@@ -1,0 +1,19 @@
+syntax = "proto3";
+package grpc.address;
+
+option java_multiple_files = true;
+
+message Message{
+  string user = 1;
+  string text = 2;
+}
+message MessageRequest{
+  Message message = 1;
+}
+message MessageResponse{
+  string result = 1;
+}
+service MessageService{
+  rpc message(MessageRequest) returns (MessageResponse){};
+  rpc chat(stream Message) returns (stream Message);
+}
